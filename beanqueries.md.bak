@@ -105,9 +105,15 @@ select year,month, sum(cost(position)), sum(CONVERT(position, 'EUR')) from year 
 Get car expenses:
 
 ~~~sql
-select year, month, quarter(date), account, sum(convert(position, 'EUR')) as val from year >=2015 where account ~ "Expenses:Family:Car|Expenses:Family:Van" group by year,month, account, quarter(date)
+SELECT year, month, quarter(date), account, sum(convert(position, 'EUR')) AS val
+FROM year >=2015
+WHERE account ~ "Expenses:Family:Car|Expenses:Family:Van"
+GROUP BY year,month, account, quarter(date)
 ~~~
 
 Filter on accounts metadata
 
-SELECT getitem(open_meta(account), 'name') as name, value(sum(position)) AS balance WHERE getitem(open_meta(account), 'report') = 'true'
+~~~sql
+SELECT getitem(open_meta(account), 'name') as name, value(sum(position)) AS balance
+WHERE getitem(open_meta(account), 'report') = 'true'
+~~~

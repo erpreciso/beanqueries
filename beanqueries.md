@@ -99,7 +99,11 @@ ORDER BY year, month DESC
 Get all expenses converted in EUR and ready to export to CSV and import in sheets
 
 ~~~sql
-select year,month, sum(cost(position)), sum(CONVERT(position, 'EUR')) from year >= 2017 where account ~ ':car:' group by year, month order by year,month desc
+SELECT year,month, sum(cost(position)), sum(CONVERT(position, 'EUR'))
+FROM year >= 2017
+WHERE account ~ ':car:'
+GROUP BY year, month
+ORDER BY year,month desc
 ~~~
 
 Get car expenses:
